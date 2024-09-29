@@ -1,0 +1,215 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(to bottom right, #d63504, #ff7f50);
+    display: flex;
+    flex-direction: column;
+}
+.title {
+    text-align: center;
+    font-size: 5vw; /* Tamanho responsivo baseado na largura da tela */
+    max-font-size: 48px; /* Tamanho máximo */
+    min-font-size: 24px; /* Tamanho mínimo */
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    margin: 20px 0;
+    transition: transform 0.3s ease; /* Transição suave */
+}
+
+/* Efeito de escalonamento no título */
+.title:hover {
+    transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
+}
+
+.board {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+}
+
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::after,
+.board.x .cell:not(.x):not(.circle):hover::before {
+    background: rgba(255, 255, 255, 0.3) !important;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.cell.x,
+.cell.circle {
+    cursor: not-allowed;
+}
+
+.cell:nth-child(1),
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    border-top: none;
+}
+
+.cell:nth-child(1),
+.cell:nth-child(4),
+.cell:nth-child(7) {
+    border-left: none;
+}
+
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:nth-child(9) {
+    border-bottom: none;
+}
+
+.cell:nth-child(3),
+.cell:nth-child(6),
+.cell:nth-child(9) {
+    border-right: none;
+}
+
+
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.x .cell:not(.x):not(.circle):hover::before {
+    content: "";
+    height: calc(100px * 0.15);
+    width: calc(100px * 0.9);
+    background: rgb(10, 10, 10);
+    position: absolute;
+}
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.circle):hover::before {
+    transform: rotate(45deg);
+}
+
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::after {
+    transform: rotate(-45deg);
+}
+
+
+.cell.circle::before,
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::after,
+.board.circle .cell:not(.x):not(.circle):hover::after {
+    content: "";
+    height: calc(70px * 0.9);
+    width: calc(70px * 0.9);
+    background-color: transparent;
+    border: 10px solid rgb(10, 10, 10);
+    position: absolute;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.winning-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    flex-direction: column;
+}
+
+.winning-message-button {
+    font-size: 2.5rem;
+    background-color: rgba(255, 127, 80, 1);
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    margin-top: 16px;
+    color: white;
+}
+
+.winning-message-button:hover {
+    color: rgba(255, 127, 80, 1);
+    background-color: #181818;
+}
+
+.winning-message-text {
+    color: rgb(250, 247, 247);
+    font-size: 5rem;
+}
+
+.show-winning-message {
+    display: flex;
+}
+.social-links {
+    margin-top: auto; /* Empurra o rodapé para o final */
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .social-links li {
+    list-style: none;
+  }
+  
+  .social-links li a {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    display: block;
+    text-align: center;
+    margin: 0 10px;
+    border-radius: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+    text-decoration: none;
+    transition: 0.5s;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .social-links li a:hover {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .social-links li a .fab {
+    font-size: 24px;
+    color: #262626;
+    transition: 0.5s;
+  }
+  
+  .social-links li:nth-child(1) a:hover .fab {
+    color: #3b5998; /* Facebook: Azul forte */
+  }
+  
+  .social-links li:nth-child(2) a:hover .fab {
+    color: #e4405f; /* Instagram: Vermelho vibrante */
+  }
+  
+  .social-links li:nth-child(3) a:hover .fab {
+    color: #007bb6; /* LinkedIn: Azul forte */
+  }
+  
+  .social-links li:nth-child(4) a:hover .fab {
+    color: #444; /* GitHub: Cinza escuro */
+  }
+  
